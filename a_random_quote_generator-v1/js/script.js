@@ -11,16 +11,20 @@ project 1 - A Random Quote Generator
  * `quotes` array 
 ***/
 
-const arr = [
+const quotes = [
   {
-    quote: "Be yourself; everyone else is already taken",
-    source: "Oscar Wilde"
+    quote: "We accept the love we think we deserve",
+    source: "Stephen Chbosky",
+    citation: "The Perks of Being a Wallflower",
+    year: 1999,
+    tag: "love"
   },
   {
     quote: "Maybe our girlfriends are our soulmates and guys are just people to have fun with",
     source: "Candace Bushnell",
     citation: "Sex and the City",
     year: 2001,
+    tag: "friendship"
   },
   {
     quote: "I'm selfish, impatient and a little insecure. I make mistakes, I am out of control and at times hard to handle. But if you can't handle me at my worst, then you sure as hell don't deserve me at my best",
@@ -36,11 +40,11 @@ const arr = [
   },
 ];
 //Empty array that will hold the quote objects
-let quotes = []; 
+let arr = []; 
 
 //This will add the array of objects into the quotes array using the push operator
 
-quotes.push(...arr); 
+arr.push(...quotes); 
 
 
 /***************************/
@@ -86,13 +90,14 @@ function getRandomQuote(array) {
 //the background to a random color whenever invoked
 
 function printQuote () {
-  const randomQuote = getRandomQuote(quotes);
+  const randomQuote = getRandomQuote(arr);
   let html = `<p class = "quote">${randomQuote.quote}</p>`;
   html += `<p class = "source">${randomQuote.source}`;
 
-  if (Object.keys(randomQuote).length === 4) {
+  if (Object.keys(randomQuote).length > 4) {
     html += `<span class = "citation">${randomQuote.citation}</span>`
-    html += `<span class = "year">${randomQuote.year}</span>`
+    html += `<span class = "year">${randomQuote.year} </span>`
+    html += `<span class = "tags">"${randomQuote.tag}"</span>`
   }
 
   html += "</p>";
@@ -101,6 +106,8 @@ function printQuote () {
 
   return document.getElementById('quote-box').innerHTML = html; 
 }
+
+//This will call the printQuote function in intervals of 15 seconds
 
 setInterval(printQuote, 15000);
 
